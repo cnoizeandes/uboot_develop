@@ -55,7 +55,7 @@ void spl_invoke_opensbi(struct spl_image_info *spl_image)
 	/* Find os image, U-Boot or Linux image in /fit-images */
 	ret = spl_opensbi_find_os_node(spl_image->fdt_addr, &os_node);
 	if (ret) {
-		pr_err("Can't find U-Boot node, %d\n", ret);
+		pr_err("Can't find OS node, %d\n", ret);
 		hang();
 	}
 
@@ -64,11 +64,12 @@ void spl_invoke_opensbi(struct spl_image_info *spl_image)
 	if (ret)
 		ret = fit_image_get_load(spl_image->fdt_addr, os_node, &os_entry);
 
-	/* Prepare obensbi_info object */
+	/* Prepare opensbi_info object */
 	opensbi_info.magic = FW_DYNAMIC_INFO_MAGIC_VALUE;
 	opensbi_info.version = FW_DYNAMIC_INFO_VERSION;
 	opensbi_info.next_addr = os_entry;
 	opensbi_info.next_mode = FW_DYNAMIC_INFO_NEXT_MODE_S;
+	opensbi_info.options = CONFIG_SPL_OPENSBI_SCRATCH_OPTIONS;
 	opensbi_info.boot_hart = gd->arch.boot_hart;
 
 	opensbi_entry = (void (*)(ulong, ulong, ulong))spl_image->entry_point;

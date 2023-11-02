@@ -21,17 +21,19 @@ struct arch_global_data {
 #if CONFIG_IS_ENABLED(SIFIVE_CLINT)
 	void __iomem *clint;	/* clint base address */
 #endif
-#ifdef CONFIG_ANDES_PLIC
-	void __iomem *plic;	/* plic base address */
+#ifdef CONFIG_ANDES_PLICSW
+	void __iomem *plicsw;	/* plic base address */
 #endif
-#ifdef CONFIG_V5L2_CACHE
+#if CONFIG_IS_ENABLED(V5L2_CACHE)
 	void __iomem *l2c;	/* l2c base address */
 #endif
 #if CONFIG_IS_ENABLED(SMP)
 	struct ipi_data ipi[CONFIG_NR_CPUS];
 #endif
-#ifndef CONFIG_XIP
+#if !CONFIG_IS_ENABLED(XIP)
+#ifdef CONFIG_AVAILABLE_HARTS
 	ulong available_harts;
+#endif
 #endif
 };
 

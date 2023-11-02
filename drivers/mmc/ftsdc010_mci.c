@@ -30,7 +30,7 @@
 #include <syscon.h>
 #include <linux/err.h>
 
-#define CFG_CMD_TIMEOUT (CONFIG_SYS_HZ >> 4) /* 250 ms */
+#define CFG_CMD_TIMEOUT (CONFIG_SYS_HZ >> 2) /* 250 ms */
 #define CFG_RST_TIMEOUT CONFIG_SYS_HZ /* 1 sec reset timeout */
 
 #if CONFIG_IS_ENABLED(OF_PLATDATA)
@@ -455,7 +455,7 @@ int ftsdc010_mmc_bind(struct udevice *dev)
 }
 
 static const struct udevice_id ftsdc010_mmc_ids[] = {
-	{ .compatible = "andestech,atfsdc010"},
+	{ .compatible = "andestech,atfsdc010" },
 	{ .compatible = "andestech,atfsdc010g" },
 	{ }
 };

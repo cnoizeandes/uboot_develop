@@ -111,9 +111,9 @@ enum sbi_ext_andes_fid {
 	SBI_EXT_ANDES_ENTER_SUSPEND_MODE,
 	SBI_EXT_ANDES_RESTART,
 	SBI_EXT_ANDES_SET_RESET_VEC,
-	SBI_EXT_ANDES_SET_PMA,
-	SBI_EXT_ANDES_FREE_PMA,
-	SBI_EXT_ANDES_PROBE_PMA,
+          SBI_EXT_ANDES_SET_PMA,
+          SBI_EXT_ANDES_FREE_PMA,
+          SBI_EXT_ANDES_PROBE_PMA,
 	SBI_EXT_ANDES_DCACHE_WBINVAL_ALL,
 	SBI_EXT_ANDES_HPM,
 };
@@ -197,4 +197,5 @@ void sbi_dcache_wbinval_all(void);
 void sbi_set_pma(phys_addr_t offset, unsigned long vaddr, size_t size);
 void sbi_free_pma(unsigned long vaddr);
 long sbi_probe_pma(void);
+
 #endif
